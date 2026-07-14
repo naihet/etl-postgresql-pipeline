@@ -1,9 +1,7 @@
 services:
 
   postgres:
-
     image: postgres:17
-
     container_name: postgres-db
 
     restart: unless-stopped
@@ -21,6 +19,26 @@ services:
 
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  etl:
+
+    build: .
+
+    container_name: etl-pipeline
+
+    depends_on:
+      - postgres
+
+    env_file:
+      - .env
+
+    volumes:
+      - ./data:/app/data
+      - ./output:/app/output
+      - ./sql:/app/sql
+      - ./src:/app/src
+
+    command: python src/main.py
 
 volumes:
 
