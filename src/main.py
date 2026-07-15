@@ -1,13 +1,24 @@
-#from extract import extract_data
+from extract import extract_data
+from transform import transform_data
 
-#df = extract_data(
-#    "data/Sample - Superstore.csv"
-#)
+# --------------------------------------------------------
+# Extract
+# --------------------------------------------------------
 
-#print(df.head())
+df = extract_data(
+    "data/Sample - Superstore.csv"
+)
 
-#print()
+print("Extract completed")
 
-#print(df.shape)
+print(df.head())
 
-print("ETL Pipeline Started")
+# --------------------------------------------------------
+# Transform
+# --------------------------------------------------------
+
+df = transform_data(df)
+
+print("Transform completed")
+
+print(df.head())

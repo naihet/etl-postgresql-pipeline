@@ -1,7 +1,12 @@
 import pandas as pd
 
-def extract_data(file_path):
 
-    df = pd.read_csv(file_path)
+def extract_data(file_path: str) -> pd.DataFrame:
+    """
+    Read CSV file.
+    """
 
-    return df
+    return pd.read_csv(
+        file_path,
+        encoding="cp1252"
+    )
