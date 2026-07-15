@@ -1,5 +1,6 @@
 from extract import extract_data
 from transform import transform_data
+from load import load_data
 
 # --------------------------------------------------------
 # Extract
@@ -22,6 +23,12 @@ df = transform_data(df)
 print("Transform completed")
 
 print(df.head())
+
+# --------------------------------------------------------
+# Load
+# --------------------------------------------------------
+
+load_data(df)
 
 # --------------------------------------------------------
 # Validation
