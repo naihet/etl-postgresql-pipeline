@@ -22,3 +22,52 @@ df = transform_data(df)
 print("Transform completed")
 
 print(df.head())
+
+# --------------------------------------------------------
+# Validation
+# --------------------------------------------------------
+
+print()
+
+print("Rows :", len(df))
+
+print("Columns :", len(df.columns))
+
+print()
+
+print(df.dtypes)
+
+# --------------------------------------------------------
+# Missing Values Check
+# --------------------------------------------------------
+
+print()
+
+print(df.isnull().sum())
+
+# --------------------------------------------------------
+# Duplicate Check
+# --------------------------------------------------------
+
+duplicate_count = df.duplicated().sum()
+
+print()
+
+print(f"Duplicate Rows : {duplicate_count}")
+
+# --------------------------------------------------------
+# Numeric Column
+# --------------------------------------------------------
+
+print()
+
+print(
+    df[
+        [
+            "sales",
+            "quantity",
+            "discount",
+            "profit"
+        ]
+    ].describe()
+)
