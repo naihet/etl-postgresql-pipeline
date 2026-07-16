@@ -3,6 +3,8 @@ from transform import transform_data
 from load import load_data
 from logger import logger
 from validate import validate_data
+from sqlalchemy import text
+from database import engine
 
 # --------------------------------------------------------
 # Extract
@@ -33,6 +35,22 @@ print(df.head())
 load_data(df)
 
 logger.info("Load completed")
+
+# --------------------------------------------------------
+# Verification
+# --------------------------------------------------------
+
+with engine.connect() as conn:
+
+    result = conn.execute(
+        text(
+            "SELECT COUNT(*) FROM sales"
+        )
+    )
+
+    total_rows = result.scalar()
+
+print(f"Rows in PostgreSQL : {total_rows}")
 
 # --------------------------------------------------------
 # Validation
