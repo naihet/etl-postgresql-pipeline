@@ -14,5 +14,3 @@ def load_data(df: pd.DataFrame):
         if_exists="replace",
         index=False
     )
-
-    print("Data loaded successfully.")

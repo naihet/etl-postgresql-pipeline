@@ -1,6 +1,8 @@
 from extract import extract_data
 from transform import transform_data
 from load import load_data
+from logger import logger
+from validate import validate_data
 
 # --------------------------------------------------------
 # Extract
@@ -10,7 +12,7 @@ df = extract_data(
     "data/Sample - Superstore.csv"
 )
 
-print("Extract completed")
+logger.info("Extract completed")
 
 print(df.head())
 
@@ -20,7 +22,7 @@ print(df.head())
 
 df = transform_data(df)
 
-print("Transform completed")
+logger.info("Transform completed")
 
 print(df.head())
 
@@ -30,37 +32,17 @@ print(df.head())
 
 load_data(df)
 
+logger.info("Load completed")
+
 # --------------------------------------------------------
 # Validation
 # --------------------------------------------------------
 
-print()
+report = validate_data(df)
 
-print("Rows :", len(df))
-
-print("Columns :", len(df.columns))
-
-print()
+print(report)
 
 print(df.dtypes)
-
-# --------------------------------------------------------
-# Missing Values Check
-# --------------------------------------------------------
-
-print()
-
-print(df.isnull().sum())
-
-# --------------------------------------------------------
-# Duplicate Check
-# --------------------------------------------------------
-
-duplicate_count = df.duplicated().sum()
-
-print()
-
-print(f"Duplicate Rows : {duplicate_count}")
 
 # --------------------------------------------------------
 # Numeric Column
