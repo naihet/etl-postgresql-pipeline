@@ -2,17 +2,32 @@ import logging
 from pathlib import Path
 
 # ------------------------------------------------------------
-# Create logs directory if it does not exist
+# Create logs directory
 # ------------------------------------------------------------
 Path("logs").mkdir(exist_ok=True)
 
 # ------------------------------------------------------------
-# Configure logging
+# Configure Logger
 # ------------------------------------------------------------
-logging.basicConfig(
-    filename="logs/etl.log",
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(message)s"
+logger = logging.getLogger("etl")
+
+logger.setLevel(logging.INFO)
+
+formatter = logging.Formatter(
+    "%(asctime)s | %(levelname)s | %(message)s"
 )
 
-logger = logging.getLogger(__name__)
+#
+# Write log to file
+#
+file_handler = logging.FileHandler("logs/etl.log")
+file_handler.setFormatter(formatter)
+
+#
+# Show log on Docker console
+#
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(formatter)
+
+logger.addHandler(file_handler)
+logger.addHandler(console_handler)
