@@ -37,6 +37,7 @@ services:
       - ./output:/app/output
       - ./sql:/app/sql
       - ./src:/app/src
+      - ./logs:/app/logs
 
     command: python src/main.py
 
